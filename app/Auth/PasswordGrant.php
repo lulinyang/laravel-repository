@@ -3,19 +3,14 @@
 namespace App\Auth;
 
 use League\OAuth2\Server\Grant\PasswordGrant as BasePasswordGrant;
-
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\RequestEvent;
 use Psr\Http\Message\ServerRequestInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 
-
-
 class PasswordGrant extends BasePasswordGrant
 {
-
-
     /**
      * @param ServerRequestInterface $request
      * @param ClientEntityInterface  $client
@@ -28,7 +23,7 @@ class PasswordGrant extends BasePasswordGrant
     {
         $username = $this->getRequestParameter('username', $request);
         $provider = $this->getRequestParameter('provider', $request);
-        if(is_null($provider) && is_null($username)){
+        if (is_null($provider) && is_null($username)) {
             throw OAuthServerException::invalidRequest('username');
         }
         $password = $this->getRequestParameter('password', $request);
@@ -36,6 +31,7 @@ class PasswordGrant extends BasePasswordGrant
             throw OAuthServerException::invalidRequest('password');
         }
         $client->provider = $provider;
+
         $user = $this->userRepository->getUserEntityByUserCredentials(
             $username,
             $password,
@@ -51,5 +47,4 @@ class PasswordGrant extends BasePasswordGrant
 
         return $user;
     }
-
 }
