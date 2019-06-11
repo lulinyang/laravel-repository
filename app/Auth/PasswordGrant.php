@@ -28,7 +28,6 @@ class PasswordGrant extends BasePasswordGrant
     {
         $username = $this->getRequestParameter('username', $request);
         $provider = $this->getRequestParameter('provider', $request);
-
         if(is_null($provider) && is_null($username)){
             throw OAuthServerException::invalidRequest('username');
         }
@@ -36,6 +35,7 @@ class PasswordGrant extends BasePasswordGrant
         if (is_null($password)) {
             throw OAuthServerException::invalidRequest('password');
         }
+        $client->provider = $provider;
         $user = $this->userRepository->getUserEntityByUserCredentials(
             $username,
             $password,

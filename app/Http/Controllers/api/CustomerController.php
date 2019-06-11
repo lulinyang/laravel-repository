@@ -31,4 +31,14 @@ class CustomerController extends Controller
         $result = collect($this->customer->saveUser($request))->toJson();
         return $result;
     }
+
+    /**
+     * 得到用户信息
+     */
+    public function getUserInfo(Request $request)
+    {
+       
+        $result = 'aaa';
+        return $result;
+    }
 }

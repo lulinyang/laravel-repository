@@ -17,4 +17,5 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'customer','namespace' => 'api'], function() {
     Route::get('/getUserList', 'CustomerController@getUserList');
     Route::post('/saveUser', 'CustomerController@saveUser');
+    Route::post('/getUserInfo', 'CustomerController@getUserInfo');
 });

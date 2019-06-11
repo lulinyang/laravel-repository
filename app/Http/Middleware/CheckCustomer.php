@@ -15,10 +15,9 @@ class CheckCustomer
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
         if (\Auth::guard('customer')->check()) {
             $model = \Auth::guard('customer')->user();
-            
+            // var_dump($model);die();
             if ($model instanceof Facilitator) {
                 return $next($request);
             } else {
